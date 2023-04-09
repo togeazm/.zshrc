@@ -41,6 +41,11 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # 補完候補をTabや矢印で選択可能
 zstyle ':completion:*:default' menu select=1
 
+# cdと同時にlsも行う
+function cd () {
+    builtin cd "$@" && ls
+}
+
 # ctrl + r でコマンド履歴検索する
 function peco-history-selection() {
   BUFFER=`history -n 1 | tac  | awk '!a[$0]++' | peco`
