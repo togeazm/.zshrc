@@ -61,7 +61,7 @@ fi
 
 # ctrl + f で過去に移動したことのあるディレクトリを選択する
 function peco-cdr () {
-    local selected_dir="$(cdr -l | sed 's/^[0-9]\+ \+//' | peco --prompt="cdr >" --query "$LBUFFER")"
+    local selected_dir="$(cdr -l | sed -E 's/^ *[0-9]+ +//' | peco --prompt="cdr >" --query "$LBUFFER")"
     if [ -n "$selected_dir" ]; then
         BUFFER="cd ${selected_dir}"
         zle accept-line
